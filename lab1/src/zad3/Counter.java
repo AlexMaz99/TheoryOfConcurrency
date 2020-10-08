@@ -1,28 +1,25 @@
 package zad3;
 
-import java.util.concurrent.Semaphore;
-
 public class Counter {
     private int _val;
-    private volatile boolean[] readyToGo = {false, false};
-    private volatile int canGo = 0;
-//    private Semaphore semaphore = new Semaphore(1, true);
+
+    // whether threads are ready to enter the critical section
+    private volatile boolean[] isReady = {false, false};
+
+    // thread that has access to the critical section
+    // 0 - DThread has access, 1 - IThread has access
+    private volatile int threadWithAccess = 0;
 
     public Counter(int n) {
         _val = n;
-
     }
 
     public void inc() {
-//        semaphore.acquire();
         _val++;
-//        semaphore.release();
     }
 
     public void dec() {
-//        semaphore.acquire();
         _val--;
-//        semaphore.release();
     }
 
     public int value() {
@@ -30,30 +27,18 @@ public class Counter {
     }
 
     public void changeReadyStatus(int numberOfThread, boolean ready) {
-        readyToGo[numberOfThread] = ready;
+        isReady[numberOfThread] = ready;
     }
 
-    public void setCanGo(int numberOfThread) {
-        canGo = numberOfThread;
+    public void setThreadWithAccess(int numberOfThread) {
+        threadWithAccess = numberOfThread;
     }
 
-    private boolean cas(boolean old, int i){
-        if (old == readyToGo[i])
-            return true;
-        return false;
+    public boolean isThreadReady(int numberOfThread) {
+        return isReady[numberOfThread];
     }
 
-    public boolean getReadyToGo(int i) {
-        boolean done = false;
-        boolean value = false;
-        while (!done){
-            value = readyToGo[i];
-            done = cas(value, i);
-        }
-        return value;
-    }
-
-    public int getCanGo() {
-        return canGo;
+    public boolean hasAccess(int numberOfThread) {
+        return threadWithAccess == numberOfThread;
     }
 }

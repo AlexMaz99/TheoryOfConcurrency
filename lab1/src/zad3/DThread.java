@@ -11,9 +11,9 @@ public class DThread extends Thread {
     public void run() {
         for (int i = 0; i < 10000; i++) {
             counter.changeReadyStatus(0, true);
-            counter.setCanGo(1);
-            while (counter.getReadyToGo(1) && counter.getCanGo() == 1) {
-                // wait for your turn
+            counter.setThreadWithAccess(1);
+            while (counter.isThreadReady(1) && counter.hasAccess(1)) {
+                // do nothing
             }
 
             counter.dec();

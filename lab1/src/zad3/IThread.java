@@ -11,9 +11,9 @@ public class IThread extends Thread {
     public void run() {
         for (int i = 0; i < 10000; i++) {
             counter.changeReadyStatus(1, true);
-            counter.setCanGo(0);
-            while (counter.getReadyToGo(0) && counter.getCanGo() == 0) {
-                // wait for your turn
+            counter.setThreadWithAccess(0);
+            while (counter.isThreadReady(0) && counter.hasAccess(0)) {
+                // do nothing
             }
 
             counter.inc();
