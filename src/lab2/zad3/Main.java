@@ -10,9 +10,8 @@ public class Main {
         for (int i = 0; i < 10; i ++){
             Client client = new Client(countingSemaphore);
             clients.add(client);
-            client.start();
         }
-
+        clients.stream().forEach(Client::start);
         for (Client client: clients)
             client.join();
     }

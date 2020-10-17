@@ -1,7 +1,7 @@
 package lab2.zad3;
 
 public class Client extends Thread{
-    private CountingSemaphore countingSemaphore;
+    private final CountingSemaphore countingSemaphore;
 
     public Client (CountingSemaphore countingSemaphore){
         this.countingSemaphore = countingSemaphore;

@@ -1,27 +1,21 @@
 package lab2.zad3;
 
 public class BinarySemaphore {
-    private volatile boolean isFree = true;
-    private volatile int waiting = 0;
+    private volatile int status;
 
-    public BinarySemaphore(int waiting, boolean isFree) {
-        this.waiting = waiting;
-        this.isFree = isFree;
+    public BinarySemaphore(int status) {
+        this.status = status;
     }
 
     public synchronized void P() throws InterruptedException {
-        waiting++;
-        while (!isFree) {
+        while (status <= 0) {
             this.wait();
         }
-        waiting--;
-        isFree = false;
+        status--;
     }
 
     public synchronized void V() {
-        isFree = true;
-        if (waiting > 0) {
-            this.notify();
-        }
+        status++;
+        this.notify();
     }
 }
