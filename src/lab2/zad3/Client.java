@@ -1,17 +1,19 @@
 package lab2.zad3;
 
-public class Client extends Thread{
+class Client extends Thread {
     private final CountingSemaphore countingSemaphore;
+    private final Counter counter;
 
-    public Client (CountingSemaphore countingSemaphore){
+    public Client(CountingSemaphore countingSemaphore, Counter counter) {
         this.countingSemaphore = countingSemaphore;
+        this.counter = counter;
     }
 
     @Override
     public void run() {
         try {
             countingSemaphore.P();
-            System.out.println(countingSemaphore.getVal());
+            counter.inc();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

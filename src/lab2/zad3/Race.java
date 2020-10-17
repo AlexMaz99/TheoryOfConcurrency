@@ -1,6 +1,6 @@
 package lab2.zad3;
 
-public class Race {
+class Race {
     public static void main(String[] args) throws InterruptedException {
         Counter cnt = new Counter(0);
         CountingSemaphore semaphore = new CountingSemaphore(1);

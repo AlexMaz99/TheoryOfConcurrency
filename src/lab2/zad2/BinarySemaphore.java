@@ -1,14 +1,13 @@
-package lab2.zad3;
+package lab2.zad2;
 
 class BinarySemaphore {
-    private volatile boolean status;
+    private boolean status = true;
 
-    public BinarySemaphore(boolean status) {
-        this.status = status;
+    public BinarySemaphore() {
     }
 
     public synchronized void P() throws InterruptedException {
-        while (!status) {
+        if (!status) {
             this.wait();
         }
         status = false;

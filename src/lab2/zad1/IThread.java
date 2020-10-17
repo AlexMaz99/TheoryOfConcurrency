@@ -3,23 +3,23 @@ package lab2.zad1;
 
 class IThread extends Thread {
     private final Counter counter;
-    private final Semaphore semaphore;
+    private final BinarySemaphore binarySemaphore;
 
-    public IThread(Counter counter, Semaphore semaphore) {
+    public IThread(Counter counter, BinarySemaphore binarySemaphore) {
         this.counter = counter;
-        this.semaphore = semaphore;
+        this.binarySemaphore = binarySemaphore;
     }
 
     @Override
     public void run() {
         for (int i = 0; i < 10000; i++) {
             try {
-                semaphore.P();
+                binarySemaphore.P();
                 counter.inc();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
-                semaphore.V();
+                binarySemaphore.V();
             }
         }
     }

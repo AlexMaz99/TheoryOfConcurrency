@@ -1,12 +1,12 @@
 package lab2.zad2;
 
-public class Race {
+class Race {
     public static void main(String[] args) throws InterruptedException {
         Counter cnt = new Counter(0);
-        Semaphore semaphore = new Semaphore();
+        BinarySemaphore binarySemaphore = new BinarySemaphore();
 
-        DThread dThread = new DThread(cnt, semaphore);
-        IThread iThread = new IThread(cnt, semaphore);
+        DThread dThread = new DThread(cnt, binarySemaphore);
+        IThread iThread = new IThread(cnt, binarySemaphore);
 
         dThread.start();
         iThread.start();
