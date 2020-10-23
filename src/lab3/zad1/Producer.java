@@ -14,7 +14,7 @@ public class Producer extends Thread {
         for (int i = 0; i < 100; ++i) {
             try {
                 this.buffer.put(i);
-//                sleep( random.nextInt(100));
+                sleep( random.nextInt(100));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

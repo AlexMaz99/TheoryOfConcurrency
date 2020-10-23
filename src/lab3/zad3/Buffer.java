@@ -3,15 +3,16 @@ package lab3.zad3;
 import java.util.concurrent.Semaphore;
 
 public class Buffer {
-    private int producerIndex = 0;
-    private int consumerIndex = 0;
-    private final int resourceCapacity, numberOfWorkers;
-    private final int[] resources;
-    private final int[] workersIndexes;
-    private final Semaphore accessSemaphore;
-    private final Semaphore producedResourcesSemaphore;
-    private final Semaphore freeResourcesSemaphore;
-    private final Semaphore[] workersSemaphores;
+    private int producerIndex = 0; // current index of table "resources" for producer
+    private int consumerIndex = 0; // current index of table "resources" for consumer
+    private final int resourceCapacity, numberOfWorkers; // number of resources and number of workers
+    private final int[] resources; // table of resources
+    private final int[] workersIndexes; // current indexes of table "resources" for every worker
+
+    private final Semaphore accessSemaphore; // access to resources
+    private final Semaphore producedResourcesSemaphore; // number of produced resources which are ready to take by consumer
+    private final Semaphore freeResourcesSemaphore; // number of free places in table "resources"
+    private final Semaphore[] workersSemaphores; // supervises the order of workers in accessing resources
 
     public Buffer(int resourceCapacity, int numberOfWorkers) {
         this.resourceCapacity = resourceCapacity;
@@ -31,8 +32,8 @@ public class Buffer {
     }
 
     public void put(int i) throws InterruptedException {
-        this.freeResourcesSemaphore.acquire();
-        this.accessSemaphore.acquire();
+        this.freeResourcesSemaphore.acquire(); // waits for free place for produced resource
+        this.accessSemaphore.acquire(); // waits for access to resources
 
         System.out.println("Producer puts " + i);
         this.resources[producerIndex++] = i;
@@ -46,8 +47,8 @@ public class Buffer {
     }
 
     public int get() throws InterruptedException {
-        this.producedResourcesSemaphore.acquire();
-        this.accessSemaphore.acquire();
+        this.producedResourcesSemaphore.acquire(); // waits for resource
+        this.accessSemaphore.acquire(); // waits for access to resources
 
         int result = this.resources[this.consumerIndex];
         this.resources[this.consumerIndex++] = -1;
@@ -61,8 +62,8 @@ public class Buffer {
     }
 
     public void work(int workerNumber) throws InterruptedException {
-        this.workersSemaphores[workerNumber].acquire();
-        this.accessSemaphore.acquire();
+        this.workersSemaphores[workerNumber].acquire(); // waits for your turn
+        this.accessSemaphore.acquire(); // waits for access to resources
 
         System.out.println("Worker " + workerNumber + " delivers " + this.resources[this.workersIndexes[workerNumber]++]);
         this.workersIndexes[workerNumber] %= this.resourceCapacity;

@@ -9,8 +9,8 @@ public class PKmon {
         List<Producer> producers = new ArrayList<>();
         List<Consumer> consumers = new ArrayList<>();
 
-        int n1 = 2;
-        int n2 = 2;
+        int n1 = 5; // number of producers
+        int n2 = 5; // number of consumers
 
         for (int i = 0; i < n1; i++)
             producers.add(new Producer(buffer));
