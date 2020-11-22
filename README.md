@@ -8,3 +8,4 @@ Tasks from Theory of Concurrency classes at the AGH University of Science and Te
 4. [Java Concurrency Utilities](../master/src/lab4)
 5. [Readers-Writers Problem](../master/src/lab5)
 6. [Dining Philosophers Problem](../master/src/lab6)
+7. [Active Object in Producers-Consumers Problem](../master/src/lab7)
