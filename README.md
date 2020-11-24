@@ -9,3 +9,4 @@ Tasks from Theory of Concurrency classes at the AGH University of Science and Te
 5. [Readers-Writers Problem](../master/src/lab5)
 6. [Dining Philosophers Problem](../master/src/lab6)
 7. [Active Object in Producers-Consumers Problem](../master/src/lab7)
+8. [Mandelbrot Set using the Executor and Future Patterns](../master/src/lab8)
