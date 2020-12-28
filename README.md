@@ -10,4 +10,6 @@ Tasks from Theory of Concurrency classes at the AGH University of Science and Te
 6. [Dining Philosophers Problem](../master/src/lab6)
 7. [Active Object in Producers-Consumers Problem](../master/src/lab7)
 8. [Mandelbrot Set using the Executor and Future Patterns](../master/src/lab8)
-8. [Asynchronous Processing (Introduction to Node.js)](../master/src/lab9)
+9. [Asynchronous Processing (Introduction to Node.js)](../master/src/lab9)
+10. [Trace theory part 1](../master/src/lab10/lab10.pdf)
+11. [Trace theory part 2](../master/src/lab11/main.py)
