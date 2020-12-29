@@ -10,6 +10,17 @@ def dependent_relations(alphabet, independent_relations):
     return D
 
 
+def trace(word):
+    trace = '[<'
+
+    for i in range(len(word)):
+        trace += word[i]
+        if i != len(word) - 1:
+            trace += ', '
+    trace += '>]'
+    return trace
+
+
 def FNF(alphabet, independent_relations, word):
     stacks = make_stacks(alphabet, independent_relations, word)
     max_len = len_of_biggest_stack(stacks, alphabet)
@@ -179,6 +190,7 @@ def main(alphabet, independent_relations, word):
     print("Relacja niezależności I: ", sorted(independent_relations, key=lambda x: x[0]))
     print("Relacja zależności D: ", sorted(dependent_relations(alphabet, independent_relations), key=lambda x: x[0]))
     print("Słowo w: ", word)
+    print("Ślad słowa [w]: ", trace(word))
     result_to_draw_graph, fnf_result = FNF(alphabet, independent_relations, word)
     print("Postać normalna Foaty: ", fnf_result)
     print("Graf zależności dla słowa w:")
