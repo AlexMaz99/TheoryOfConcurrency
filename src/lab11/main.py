@@ -1,6 +1,15 @@
 from graphviz import Digraph
 
 
+def dependent_relations(alphabet, independent_relations):
+    D = set()
+    for x in sorted(alphabet):
+        for y in sorted(alphabet):
+            if (x, y) not in independent_relations and (x, y) not in D:
+                D.add((x, y))
+    return D
+
+
 def FNF(alphabet, independent_relations, word):
     stacks = make_stacks(alphabet, independent_relations, word)
     max_len = len_of_biggest_stack(stacks, alphabet)
@@ -20,17 +29,26 @@ def FNF(alphabet, independent_relations, word):
 
 def make_stacks(alphabet, independent_relations, word):
     stacks = {}
-    for sign in sorted(alphabet):
-        stacks[sign] = []
 
+    # make stack for each letter of the alphabet
+    for letter in sorted(alphabet):
+        stacks[letter] = []
+
+    # index needed to distinguish between letters in the word
     index = len(word)
+
+    # scan word from right to left
     for char in word[::-1]:
-        for sign in alphabet:
-            if sign == char:
+        # check relation with each letter of the alphabet
+        for letter in alphabet:
+            # push processed char on the stack with unique number
+            if letter == char:
                 stacks[char].append((char, str(index)))
                 index -= 1
-            elif (char, sign) not in independent_relations:
-                stacks[sign].append('*')
+            # if char is dependent from letter then push '*' on the stack
+            elif (char, letter) not in independent_relations:
+                stacks[letter].append('*')
+
     return stacks
 
 
@@ -55,6 +73,8 @@ def get_letters_from_top_of_the_stacks(stacks):
 
 def optimize_result(result, raw):
     last_set_index = len(result) - 1
+
+    # check if two adjacent sets can be joined
     for char in raw:
         for sign in result[last_set_index]:
             if (char[0], sign[0]) not in I:
@@ -68,18 +88,20 @@ def optimize_result(result, raw):
     result[last_set_index].sort()
 
 
-def draw_graph(result, independent_relations, word):
-    dot = Digraph(comment='Graph')
+def draw_graph(fnf, independent_relations, word):
+    dot = Digraph()
 
     for i, sign in enumerate(word):
         dot.node(str(i + 1), sign)
 
+    # to check if two nodes are connected indirectly
     all_edges = []
     edges = []
-    for i in range(len(result) - 2, -1, -1):
-        for u in result[i]:
-            for j in range(i + 1, len(result)):
-                for v in result[j]:
+    for i in range(len(fnf) - 2, -1, -1):
+        for u in fnf[i]:
+            for j in range(i + 1, len(fnf)):
+                for v in fnf[j]:
+                    # if two nodes are dependent and they aren't connected directly or indirectly
                     if (u[0], v[0]) not in independent_relations and (u, v) not in all_edges:
                         add_edges(all_edges, u, v)
                         edges.append((u, v))
@@ -89,6 +111,7 @@ def draw_graph(result, independent_relations, word):
 
 
 def add_edges(all_edges, u, v):
+    # add all transitive edges
     all_edges.append((u, v))
     for edge in all_edges:
         if edge[0] == v:
@@ -109,35 +132,7 @@ def FNF_to_string(result):
 def FNF_from_graph(graph):
     nodes = get_nodes_from_graph(graph)
     graph = add_transitive_edges(graph, nodes)
-    return FNF_from_graph_and_nodes(graph, nodes)
 
-
-def get_nodes_from_graph(graph):
-    nodes = []
-
-    for i in range(len(graph)):
-        u = graph[i]
-        if u[0] not in nodes:
-            nodes.append(u[0])
-        if u[1] not in nodes:
-            nodes.append(u[1])
-    nodes = sorted(nodes, key=lambda x: x[1])
-    return nodes
-
-
-def add_transitive_edges(graph, nodes):
-    for node in nodes[::-1]:
-        for edge in graph:
-            if node == edge[0]:
-                for edge2 in graph:
-                    if edge != edge2 and edge[1] == edge2[0] and (node, edge2[1]) not in graph:
-                        graph.append((node, edge2[1]))
-
-    graph = sorted(graph, key=lambda x: x[0][1])
-    return graph
-
-
-def FNF_from_graph_and_nodes(graph, nodes):
     result = ''
     processed_nodes = []
     for i in range(len(nodes)):
@@ -152,19 +147,53 @@ def FNF_from_graph_and_nodes(graph, nodes):
                     result += v[0]
                     processed_nodes.append(v)
             result += ')'
+
     return result
 
 
-# A = {'a', 'b', 'c', 'd'}
-# I = {('a', 'd'), ('d', 'a'), ('b', 'c'), ('c', 'b')}
-# w = 'baadcb'
+def get_nodes_from_graph(graph):
+    nodes = []
 
+    for i in range(len(graph)):
+        u = graph[i]
+        if u[0] not in nodes:
+            nodes.append(u[0])
+        if u[1] not in nodes:
+            nodes.append(u[1])
+    return sorted(nodes, key=lambda x: x[1])
+
+
+def add_transitive_edges(graph, nodes):
+    for node in nodes[::-1]:
+        for u in graph:
+            if node == u[0]:
+                for v in graph:
+                    if u != v and u[1] == v[0] and (node, v[1]) not in graph:
+                        graph.append((node, v[1]))
+
+    return sorted(graph, key=lambda x: x[0][1])
+
+
+def main(alphabet, independent_relations, word):
+    print("Alfabet A: ", sorted(alphabet))
+    print("Relacja niezależności I: ", sorted(independent_relations, key=lambda x: x[0]))
+    print("Relacja zależności D: ", sorted(dependent_relations(alphabet, independent_relations), key=lambda x: x[0]))
+    print("Słowo w: ", word)
+    result_to_draw_graph, fnf_result = FNF(alphabet, independent_relations, word)
+    print("Postać normalna Foaty: ", fnf_result)
+    print("Graf zależności dla słowa w:")
+    graph_result = draw_graph(result_to_draw_graph, independent_relations, word)
+    print("Postać normalna Foaty na podstawie grafu: ", FNF_from_graph(graph_result), "\n")
+
+
+# example 1
+A = {'a', 'b', 'c', 'd'}
+I = {('a', 'd'), ('d', 'a'), ('b', 'c'), ('c', 'b')}
+w = 'baadcb'
+main(A, I, w)
+
+# example 2
 A = {'a', 'b', 'c', 'd', 'e', 'f'}
 I = {('a', 'd'), ('d', 'a'), ('b', 'e'), ('e', 'b'), ('c', 'd'), ('d', 'c'), ('c', 'f'), ('f', 'c')}
 w = 'acdcfbbe'
-
-result_to_draw_graph, fnf_result = FNF(A, I, w)
-print(result_to_draw_graph)
-print(fnf_result)
-graph_result = draw_graph(result_to_draw_graph, I, w)
-print(FNF_from_graph(graph_result))
+main(A, I, w)
