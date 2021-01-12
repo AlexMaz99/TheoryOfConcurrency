@@ -1,4 +1,4 @@
-package lab3.zad2;
+package lab03.zad2;
 
 import java.util.concurrent.Semaphore;
 

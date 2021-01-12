@@ -1,4 +1,4 @@
-package lab1.zad1;
+package lab01.zad1;
 
 public class Race {
     public static void main(String[] args) throws InterruptedException {

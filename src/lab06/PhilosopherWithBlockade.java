@@ -1,4 +1,4 @@
-package lab6;
+package lab06;
 
 public class PhilosopherWithBlockade extends Philosopher {
 

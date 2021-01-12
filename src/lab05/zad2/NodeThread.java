@@ -1,4 +1,4 @@
-package lab5.zad2;
+package lab05.zad2;
 
 import java.util.List;
 

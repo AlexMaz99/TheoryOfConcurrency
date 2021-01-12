@@ -1,4 +1,4 @@
-package lab2.zad2;
+package lab02.zad2;
 
 
 class DThread extends Thread {

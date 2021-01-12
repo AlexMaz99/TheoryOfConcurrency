@@ -1,4 +1,4 @@
-package lab3.zad1;
+package lab03.zad1;
 
 import java.util.Random;
 

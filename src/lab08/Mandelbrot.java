@@ -1,4 +1,4 @@
-package lab8;
+package lab08;
 
 import java.awt.image.BufferedImage;
 import java.util.concurrent.Callable;

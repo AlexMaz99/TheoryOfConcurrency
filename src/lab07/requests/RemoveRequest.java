@@ -1,7 +1,7 @@
-package lab7.requests;
+package lab07.requests;
 
-import lab7.future.Future;
-import lab7.servant.Buffer;
+import lab07.future.Future;
+import lab07.servant.Buffer;
 
 public class RemoveRequest extends MethodRequest {
     private final Buffer buffer;

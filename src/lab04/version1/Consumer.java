@@ -1,6 +1,6 @@
-package lab4.version1;
+package lab04.version1;
 
-import lab4.IBuffer;
+import lab04.IBuffer;
 
 import java.util.Random;
 

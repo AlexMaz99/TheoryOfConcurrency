@@ -1,4 +1,4 @@
-package lab7.future;
+package lab07.future;
 
 public class Future {
     private volatile Object object;

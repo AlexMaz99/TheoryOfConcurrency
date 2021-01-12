@@ -1,4 +1,4 @@
-package lab2.zad1;
+package lab02.zad1;
 
 class BinarySemaphore {
     private boolean status = true;

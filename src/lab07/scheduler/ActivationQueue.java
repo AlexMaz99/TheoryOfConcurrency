@@ -1,6 +1,6 @@
-package lab7.scheduler;
+package lab07.scheduler;
 
-import lab7.requests.MethodRequest;
+import lab07.requests.MethodRequest;
 
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedDeque;

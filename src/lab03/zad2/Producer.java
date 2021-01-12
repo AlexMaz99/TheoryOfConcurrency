@@ -1,4 +1,4 @@
-package lab3.zad2;
+package lab03.zad2;
 
 public class Producer extends Thread {
     private final Buffer buffer;

@@ -1,4 +1,4 @@
-package lab1.zad1;
+package lab01.zad1;
 
 class DThread extends Thread {
     private final Counter counter;

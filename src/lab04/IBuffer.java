@@ -1,4 +1,4 @@
-package lab4;
+package lab04;
 
 public interface IBuffer {
     void put(int[] values);

@@ -1,7 +1,7 @@
-package lab7;
+package lab07;
 
-import lab7.future.Future;
-import lab7.proxy.Proxy;
+import lab07.future.Future;
+import lab07.proxy.Proxy;
 
 public class Consumer extends Thread {
     private final Proxy proxy;

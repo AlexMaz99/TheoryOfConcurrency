@@ -1,4 +1,4 @@
-package lab2.zad3;
+package lab02.zad3;
 
 class CountingSemaphore {
     private final BinarySemaphore valSemaphore; // is used to protect the variable val

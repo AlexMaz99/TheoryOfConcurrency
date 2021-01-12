@@ -1,6 +1,6 @@
-package lab7.proxy;
+package lab07.proxy;
 
-import lab7.future.Future;
+import lab07.future.Future;
 
 public interface Proxy {
     Future add(Object object);

@@ -1,4 +1,4 @@
-package lab7.servant;
+package lab07.servant;
 
 import java.util.LinkedList;
 import java.util.Queue;

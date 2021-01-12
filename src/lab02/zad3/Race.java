@@ -1,4 +1,4 @@
-package lab2.zad3;
+package lab02.zad3;
 
 class Race {
     public static void main(String[] args) throws InterruptedException {

@@ -1,6 +1,6 @@
-package lab7;
+package lab07;
 
-import lab7.proxy.Proxy;
+import lab07.proxy.Proxy;
 
 import java.util.ArrayList;
 import java.util.List;

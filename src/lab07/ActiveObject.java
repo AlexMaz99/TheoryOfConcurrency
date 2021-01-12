@@ -1,9 +1,9 @@
-package lab7;
+package lab07;
 
-import lab7.proxy.Proxy;
-import lab7.proxy.ProxyBuffer;
-import lab7.scheduler.Scheduler;
-import lab7.servant.Buffer;
+import lab07.proxy.Proxy;
+import lab07.proxy.ProxyBuffer;
+import lab07.scheduler.Scheduler;
+import lab07.servant.Buffer;
 
 public class ActiveObject {
     private final Buffer buffer;

@@ -1,4 +1,4 @@
-package lab1.zad1;
+package lab01.zad1;
 
 class Counter {
     private int _val;

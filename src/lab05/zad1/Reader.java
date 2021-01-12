@@ -1,4 +1,4 @@
-package lab5.zad1;
+package lab05.zad1;
 
 public class Reader extends Thread {
     private final IBook book;

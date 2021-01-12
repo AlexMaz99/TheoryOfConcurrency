@@ -1,6 +1,6 @@
-package lab4.version2;
+package lab04.version2;
 
-import lab4.IBuffer;
+import lab04.IBuffer;
 
 public class Producer extends Thread {
     private final IBuffer buffer;

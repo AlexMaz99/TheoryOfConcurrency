@@ -1,4 +1,4 @@
-package lab5.zad1;
+package lab05.zad1;
 
 public interface IBook {
     void read() throws InterruptedException;

@@ -1,10 +1,10 @@
-package lab7.proxy;
+package lab07.proxy;
 
-import lab7.future.Future;
-import lab7.requests.AddRequest;
-import lab7.requests.RemoveRequest;
-import lab7.scheduler.Scheduler;
-import lab7.servant.Buffer;
+import lab07.future.Future;
+import lab07.requests.AddRequest;
+import lab07.requests.RemoveRequest;
+import lab07.scheduler.Scheduler;
+import lab07.servant.Buffer;
 
 public class ProxyBuffer implements Proxy {
     Scheduler scheduler;

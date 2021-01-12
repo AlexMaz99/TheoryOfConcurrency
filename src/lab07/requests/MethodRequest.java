@@ -1,4 +1,4 @@
-package lab7.requests;
+package lab07.requests;
 
 public abstract class MethodRequest {
     // check if the condition for executing the method is met

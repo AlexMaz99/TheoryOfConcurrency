@@ -1,4 +1,4 @@
-package lab8;
+package lab08;
 
 import javax.swing.*;
 import java.awt.*;

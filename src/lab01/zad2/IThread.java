@@ -1,4 +1,4 @@
-package lab1.zad2;
+package lab01.zad2;
 
 class IThread extends Thread {
     private final Counter counter;

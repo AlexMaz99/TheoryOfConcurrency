@@ -13,3 +13,4 @@ Tasks from Theory of Concurrency classes at the AGH University of Science and Te
 9. [Asynchronous Processing (Introduction to Node.js)](../master/src/lab09)
 10. [Trace theory part 1](../master/src/lab10/lab10.pdf)
 11. [Trace theory part 2](../master/src/lab11/main.py)
+12. [CSP](../master/src/lab12)

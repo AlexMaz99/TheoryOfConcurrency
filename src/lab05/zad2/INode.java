@@ -1,4 +1,4 @@
-package lab5.zad2;
+package lab05.zad2;
 
 public interface INode {
     boolean contains(Object o) throws InterruptedException;

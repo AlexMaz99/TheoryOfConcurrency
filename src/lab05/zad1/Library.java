@@ -1,4 +1,4 @@
-package lab5.zad1;
+package lab05.zad1;
 
 import java.util.ArrayList;
 import java.util.List;

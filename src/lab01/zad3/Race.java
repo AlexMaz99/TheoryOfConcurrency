@@ -1,4 +1,4 @@
-package lab1.zad3;
+package lab01.zad3;
 
 public class Race {
 

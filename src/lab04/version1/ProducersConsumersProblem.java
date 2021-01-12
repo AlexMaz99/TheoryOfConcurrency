@@ -1,8 +1,8 @@
-package lab4.version1;
+package lab04.version1;
 
-import lab4.IBuffer;
-import lab4.JavaBuffer;
-import lab4.JavaConcurrencyBuffer;
+import lab04.IBuffer;
+import lab04.JavaBuffer;
+import lab04.JavaConcurrencyBuffer;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
